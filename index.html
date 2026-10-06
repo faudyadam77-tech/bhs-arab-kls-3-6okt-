@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Menulis Arab - Anggota Keluarga - Kelas 3 SD</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+            background: linear-gradient(135deg, #1e8e3e 0%, #0d652d 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #1e8e3e;
+            padding-bottom: 15px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            background: #1e8e3e;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-family: Arial, sans-serif;
+        }
+
+        .header h1 {
+            color: #0d652d;
+            font-size: 1.6em;
+            margin-bottom: 5px;
+            font-family: Arial, sans-serif;
+        }
+
+        .header .arabic-title {
+            font-size: 2em;
+            color: #1e8e3e;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 0.95em;
+            font-family: Arial, sans-serif;
+        }
+
+        .student-info {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            font-family: Arial, sans-serif;
+        }
+
+        .student-info input {
+            flex: 1;
+            min-width: 180px;
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .student-info input:focus {
+            outline: none;
+            border-color: #1e8e3e;
+        }
+
+        .instruction-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-right: 5px solid #1e8e3e;
+            padding: 12px 18px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .instruction-box h3 {
+            color: #0d652d;
+            margin-bottom: 6px;
+            font-size: 1.05em;
+        }
+
+        .instruction-box p {
+            color: #333;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+
+        .progress-section {
+            margin-bottom: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 12px;
+            margin-bottom: 5px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1e8e3e, #38ef7d);
+            border-radius: 10px;
+            transition: width 0.5s;
+            width: 0%;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .words-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 700px) {
+            .words-grid { grid-template-columns: 1fr; }
+        }
+
+        .word-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .word-card.completed {
+            border-color: #1e8e3e;
+            background: #f1f8e9;
+        }
+
+        .word-card-header {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            padding: 10px;
+            text-align: center;
+            border-bottom: 2px solid #ffc107;
+            position: relative;
+        }
+
+        .word-number {
+            position: absolute;
+            top: 5px;
+            left: 8px;
+            background: #1e8e3e;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .word-card-header .arabic-word {
+            font-size: 2.8em;
+            color: #1a1a1a;
+            font-weight: bold;
+            font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+            direction: rtl;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .word-card-header .word-meaning {
+            font-size: 0.95em;
+            color: #555;
+            font-family: Arial, sans-serif;
+            margin-top: 2px;
+        }
+
+        .word-card-header .word-translit {
+            font-size: 0.85em;
+            color: #1e8e3e;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+        }
+
+        .canvas-wrapper {
+            position: relative;
+            background: white;
+        }
+
+        .canvas-wrapper canvas {
+            display: block;
+            width: 100%;
+            cursor: crosshair;
+        }
+
+        .canvas-hint {
+            position: absolute;
+            top: 5px;
+            left: 8px;
+            background: rgba(30, 142, 62, 0.1);
+            color: #1e8e3e;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-family: Arial, sans-serif;
+            pointer-events: none;
+        }
+
+        .canvas-controls {
+            display: flex;
+            gap: 5px;
+            padding: 8px;
+            background: #f5f5f5;
+            border-top: 1px solid #e0e0e0;
+            font-family: Arial, sans-serif;
+        }
+
+        .canvas-controls button {
+            flex: 1;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.8em;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .btn-card-clear { background: #ff6b6b; color: white; }
+        .btn-card-clear:hover { background: #ee5a24; }
+        .btn-card-undo { background: #ffa726; color: white; }
+        .btn-card-undo:hover { background: #fb8c00; }
+
+        .status-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #ccc;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .status-badge.done { background: #1e8e3e; }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .action-buttons button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.05em;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-buttons button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .btn-print { background: linear-gradient(135deg, #1e8e3e, #0d652d); color: white; }
+        .btn-print:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(30, 142, 62, 0.4); }
+        .btn-save-drive { background: linear-gradient(135deg, #11998e, #38ef7d); color: white; }
+        .btn-save-drive:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(17, 153, 142, 0.4); }
+        .btn-download { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
+        .btn-download:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4); }
+
+        .status-message {
+            text-align: center;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1em;
+            display: none;
+            font-family: Arial, sans-serif;
+        }
+
+        .status-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .status-info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+
+        .reference-table {
+            margin-top: 20px;
+            border: 2px solid #1e8e3e;
+            border-radius: 10px;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .reference-table table { width: 100%; border-collapse: collapse; }
+        .reference-table th { background: #1e8e3e; color: white; padding: 10px; font-size: 0.95em; }
+        .reference-table td { padding: 10px; text-align: center; border: 1px solid #e0e0e0; }
+        .reference-table .arabic-cell { font-size: 1.8em; font-family: 'Amiri', 'Noto Naskh Arabic', serif; color: #1a1a1a; }
+        .reference-table .meaning-cell { font-size: 0.9em; color: #555; }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 10px; }
+            .action-buttons, .student-info, .reference-table, .canvas-controls, .progress-section, .canvas-hint {
+                display: none !important;
+            }
+            .word-card { break-inside: avoid; }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            display: none;
+        }
+
+        .star {
+            position: absolute;
+            font-size: 2em;
+            animation: fall 2s ease-in forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <span class="badge">SD • KELAS III</span>
+                <span class="badge" style="background: #f57c00;">Bahasa Arab</span>
+            </div>
+            <div class="arabic-title">أعضاء الأسرة</div>
+            <h1>✏️ Belajar Menulis Kosakata Anggota Keluarga ✏️</h1>
+            <p>Tebalkan dan tulis lagi SEMUA kosakata bahasa Arab tentang anggota keluarga berikut!</p>
+        </div>
+
+        <div class="student-info">
+            <input type="text" id="studentName" placeholder="📝 Nama Siswa" required>
+            <input type="text" id="studentClass" placeholder="🏫 Kelas (contoh: 3A)" value="3A">
+            <input type="date" id="studentDate">
+        </div>
+
+        <div class="instruction-box">
+            <h3>📖 Unjuk Kerja - Aktivitas Proses (التَّدْرِيبَات)</h3>
+            <p>Menulis kosakata tentang anggota keluarga sesuai dengan kaidah. Perhatikan penulisan Arab yang benar, lalu <strong>tebalkan dan tulis lagi SEMUA kosakata</strong> di bawah ini! Ikuti <em>bayangan huruf</em> dan <em>garis panduan</em> yang sudah disediakan di setiap kotak.</p>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Progres: 0 dari 8 kata selesai ditulis</div>
+        </div>
+
+        <div class="words-grid" id="wordsGrid"></div>
+
+        <div class="action-buttons">
+            <button class="btn-print" id="btnPrint" onclick="printResult()" disabled>🖨️ Cetak Hasil</button>
+            <button class="btn-save-drive" id="btnDrive" onclick="saveToDrive()" disabled>☁️ Kirim ke Google Drive</button>
+            <button class="btn-download" id="btnDownload" onclick="downloadResult()" disabled>💾 Unduh Gambar</button>
+        </div>
+
+        <div class="status-message" id="statusMessage"></div>
+
+        <div class="reference-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Arab</th>
+                        <th>Arti</th>
+                        <th>Arab</th>
+                        <th>Arti</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="arabic-cell">أَبْ</td>
+                        <td class="meaning-cell">Ayah</td>
+                        <td class="arabic-cell">أُمٌّ</td>
+                        <td class="meaning-cell">Ibu</td>
+                    </tr>
+                    <tr>
+                        <td class="arabic-cell">أَخٌ</td>
+                        <td class="meaning-cell">Saudara Laki-laki</td>
+                        <td class="arabic-cell">أُخْتٌ</td>
+                        <td class="meaning-cell">Saudara Perempuan</td>
+                    </tr>
+                    <tr>
+                        <td class="arabic-cell">جَدٌّ</td>
+                        <td class="meaning-cell">Kakek</td>
+                        <td class="arabic-cell">جَدَّةٌ</td>
+                        <td class="meaning-cell">Nenek</td>
+                    </tr>
+                    <tr>
+                        <td class="arabic-cell">عَمٌّ</td>
+                        <td class="meaning-cell">Paman (dari ayah)</td>
+                        <td class="arabic-cell">عَمَّةٌ</td>
+                        <td class="meaning-cell">Bibi (dari ayah)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="stars" id="starsContainer"></div>
+
+    <script>
+        // URL Google Apps Script sudah di-hardcode di sini
+        const GAS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTuj8cIxTMM3m5IuZVmU2zdk7dAktLrCYVwIbLuQdbRFPV4uIAsoIIBzZf3-Ng6dNX/exec";
+
+        const wordList = [
+            { word: "أَبْ", meaning: "Ayah", translit: "Ab" },
+            { word: "أُمٌّ", meaning: "Ibu", translit: "Ummun" },
+            { word: "أَخٌ", meaning: "Saudara Laki-laki", translit: "Akhun" },
+            { word: "أُخْتٌ", meaning: "Saudara Perempuan", translit: "Ukhtun" },
+            { word: "جَدٌّ", meaning: "Kakek", translit: "Jaddun" },
+            { word: "جَدَّةٌ", meaning: "Nenek", translit: "Jaddatun" },
+            { word: "عَمٌّ", meaning: "Paman (dari ayah)", translit: "Ammun" },
+            { word: "عَمَّةٌ", meaning: "Bibi (dari ayah)", translit: "Ammatun" }
+        ];
+
+        const canvases = [];
+        const contexts = [];
+        const allStrokes = [];
+        const currentStrokes = [];
+        const isDrawingArr = [];
+        const lastPosArr = [];
+
+        function init() {
+            setTodayDate();
+            createWordCards();
+            updateProgress();
+        }
+
+        function setTodayDate() {
+            document.getElementById('studentDate').value = new Date().toISOString().split('T')[0];
+        }
+
+        function createWordCards() {
+            const grid = document.getElementById('wordsGrid');
+            grid.innerHTML = '';
+
+            wordList.forEach((item, idx) => {
+                allStrokes[idx] = [];
+                currentStrokes[idx] = [];
+                isDrawingArr[idx] = false;
+                lastPosArr[idx] = { x: 0, y: 0 };
+
+                const card = document.createElement('div');
+                card.className = 'word-card';
+                card.id = `card-${idx}`;
+                card.innerHTML = `
+                    <div class="word-card-header">
+                        <span class="word-number">${idx + 1}</span>
+                        <span class="status-badge" id="badge-${idx}">Belum ditulis</span>
+                        <span class="arabic-word">${item.word}</span>
+                        <div class="word-meaning">${item.meaning}</div>
+                        <div class="word-translit">${item.translit}</div>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <span class="canvas-hint">✍️ Ikuti bayangan huruf & garis</span>
+                        <canvas id="canvas-${idx}" width="500" height="200"></canvas>
+                    </div>
+                    <div class="canvas-controls">
+                        <button class="btn-card-clear" onclick="clearCard(${idx})">🗑️ Hapus</button>
+                        <button class="btn-card-undo" onclick="undoCard(${idx})">↩️ Undo</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+
+                const canvas = document.getElementById(`canvas-${idx}`);
+                const ctx = canvas.getContext('2d');
+                canvases[idx] = canvas;
+                contexts[idx] = ctx;
+
+                resizeCanvas(idx);
+
+                canvas.addEventListener('mousedown', (e) => startDraw(idx, e));
+                canvas.addEventListener('mousemove', (e) => draw(idx, e));
+                canvas.addEventListener('mouseup', (e) => stopDraw(idx, e));
+                canvas.addEventListener('mouseout', (e) => stopDraw(idx, e));
+                canvas.addEventListener('touchstart', (e) => startDraw(idx, e), { passive: false });
+                canvas.addEventListener('touchmove', (e) => draw(idx, e), { passive: false });
+                canvas.addEventListener('touchend', (e) => stopDraw(idx, e), { passive: false });
+            });
+
+            window.addEventListener('resize', () => {
+                wordList.forEach((_, idx) => {
+                    resizeCanvas(idx);
+                    redrawCard(idx);
+                });
+            });
+        }
+
+        function resizeCanvas(idx) {
+            const canvas = canvases[idx];
+            const wrapper = canvas.parentElement;
+            const rect = wrapper.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = 200;
+        }
+
+        function getPos(idx, e) {
+            const canvas = canvases[idx];
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            
+            if (e.touches && e.touches.length > 0) {
+                return {
+                    x: (e.touches[0].clientX - rect.left) * scaleX,
+                    y: (e.touches[0].clientY - rect.top) * scaleY
+                };
+            }
+            return {
+                x: (e.clientX - rect.left) * scaleX,
+                y: (e.clientY - rect.top) * scaleY
+            };
+        }
+
+        function startDraw(idx, e) {
+            e.preventDefault();
+            isDrawingArr[idx] = true;
+            const pos = getPos(idx, e);
+            lastPosArr[idx] = pos;
+            currentStrokes[idx] = [{ x: pos.x, y: pos.y }];
+        }
+
+        function draw(idx, e) {
+            e.preventDefault();
+            if (!isDrawingArr[idx]) return;
+            
+            const pos = getPos(idx, e);
+            const ctx = contexts[idx];
+            
+            ctx.beginPath();
+            ctx.moveTo(lastPosArr[idx].x, lastPosArr[idx].y);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.strokeStyle = '#1a1a1a';
+            ctx.lineWidth = 6;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.stroke();
+            
+            currentStrokes[idx].push({ x: pos.x, y: pos.y });
+            lastPosArr[idx] = pos;
+        }
+
+        function stopDraw(idx, e) {
+            if (e) e.preventDefault();
+            if (isDrawingArr[idx] && currentStrokes[idx].length > 0) {
+                allStrokes[idx].push([...currentStrokes[idx]]);
+                currentStrokes[idx] = [];
+                updateCardStatus(idx);
+            }
+            isDrawingArr[idx] = false;
+        }
+
+        function drawGuideLinesAndShadow(ctx, canvas, word) {
+            const padding = 30;
+            const w = canvas.width;
+            const h = canvas.height;
+            
+            const baselineY = h * 0.72;
+            const topLineY = h * 0.28;
+            const middleLineY = h * 0.50;
+            
+            ctx.strokeStyle = '#ffb300';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([8, 5]);
+            ctx.beginPath();
+            ctx.moveTo(padding, topLineY);
+            ctx.lineTo(w - padding, topLineY);
+            ctx.stroke();
+            
+            ctx.strokeStyle = '#bdbdbd';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(padding, middleLineY);
+            ctx.lineTo(w - padding, middleLineY);
+            ctx.stroke();
+            
+            ctx.strokeStyle = '#1e8e3e';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(padding, baselineY);
+            ctx.lineTo(w - padding, baselineY);
+            ctx.stroke();
+            
+            ctx.strokeStyle = '#e53935';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(padding, baselineY + 25);
+            ctx.lineTo(w - padding, baselineY + 25);
+            ctx.stroke();
+            
+            ctx.setLineDash([]);
+            
+            ctx.font = '11px Arial, sans-serif';
+            ctx.fillStyle = '#ffb300';
+            ctx.textAlign = 'left';
+            ctx.fillText('atas', 5, topLineY - 3);
+            ctx.fillStyle = '#1e8e3e';
+            ctx.fillText('dasar', 5, baselineY - 3);
+            ctx.fillStyle = '#e53935';
+            ctx.fillText('bawah', 5, baselineY + 28);
+            
+            ctx.save();
+            ctx.globalAlpha = 0.18;
+            ctx.fillStyle = '#1a1a1a';
+            ctx.font = `bold ${Math.min(h * 0.55, 110)}px Amiri, Noto Naskh Arabic, serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'alphabetic';
+            ctx.direction = 'rtl';
+            ctx.fillText(word, w / 2, baselineY - 5);
+            ctx.restore();
+            
+            ctx.save();
+            ctx.globalAlpha = 0.25;
+            ctx.strokeStyle = '#1e8e3e';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 4]);
+            ctx.font = `bold ${Math.min(h * 0.55, 110)}px Amiri, Noto Naskh Arabic, serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'alphabetic';
+            ctx.direction = 'rtl';
+            ctx.strokeText(word, w / 2, baselineY - 5);
+            ctx.setLineDash([]);
+            ctx.restore();
+        }
+
+        function redrawCard(idx) {
+            const ctx = contexts[idx];
+            const canvas = canvases[idx];
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            drawGuideLinesAndShadow(ctx, canvas, wordList[idx].word);
+            
+            allStrokes[idx].forEach(stroke => {
+                if (stroke.length < 2) return;
+                for (let i = 1; i < stroke.length; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(stroke[i-1].x, stroke[i-1].y);
+                    ctx.lineTo(stroke[i].x, stroke[i].y);
+                    ctx.strokeStyle = '#1a1a1a';
+                    ctx.lineWidth = 6;
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+                    ctx.stroke();
+                }
+            });
+        }
+
+        function clearCard(idx) {
+            allStrokes[idx] = [];
+            currentStrokes[idx] = [];
+            redrawCard(idx);
+            updateCardStatus(idx);
+        }
+
+        function undoCard(idx) {
+            if (allStrokes[idx].length > 0) {
+                allStrokes[idx].pop();
+                redrawCard(idx);
+                updateCardStatus(idx);
+            }
+        }
+
+        function updateCardStatus(idx) {
+            const card = document.getElementById(`card-${idx}`);
+            const badge = document.getElementById(`badge-${idx}`);
+            
+            if (allStrokes[idx].length > 0) {
+                card.classList.add('completed');
+                badge.textContent = '✓ Selesai';
+                badge.classList.add('done');
+            } else {
+                card.classList.remove('completed');
+                badge.textContent = 'Belum ditulis';
+                badge.classList.remove('done');
+            }
+            
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const completed = allStrokes.filter(s => s.length > 0).length;
+            const percent = (completed / wordList.length) * 100;
+            
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressText').textContent = 
+                `Progres: ${completed} dari ${wordList.length} kata selesai ditulis`;
+            
+            const allDone = completed === wordList.length;
+            document.getElementById('btnPrint').disabled = !allDone;
+            document.getElementById('btnDrive').disabled = !allDone;
+            document.getElementById('btnDownload').disabled = !allDone;
+            
+            if (allDone && completed > 0) {
+                const prevCompleted = parseInt(document.getElementById('progressFill').dataset.prevCompleted || 0);
+                if (prevCompleted < wordList.length) {
+                    showCelebration();
+                }
+                document.getElementById('progressFill').dataset.prevCompleted = completed;
+            } else {
+                document.getElementById('progressFill').dataset.prevCompleted = completed;
+            }
+        }
+
+        function showCelebration() {
+            const container = document.getElementById('starsContainer');
+            container.style.display = 'block';
+            container.innerHTML = '';
+            
+            const emojis = ['⭐', '🌟', '✨', '🎉', '🏆', '👏', '🌙'];
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const star = document.createElement('span');
+                    star.className = 'star';
+                    star.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.animationDelay = Math.random() * 0.5 + 's';
+                    container.appendChild(star);
+                }, i * 80);
+            }
+            
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 4000);
+        }
+
+        function generateResultImage() {
+            const name = document.getElementById('studentName').value || '---';
+            const kelas = document.getElementById('studentClass').value || '---';
+            const tanggal = document.getElementById('studentDate').value || '---';
+            
+            const resultCanvas = document.createElement('canvas');
+            resultCanvas.width = 900;
+            resultCanvas.height = 1500;
+            const rctx = resultCanvas.getContext('2d');
+            
+            rctx.fillStyle = '#ffffff';
+            rctx.fillRect(0, 0, 900, 1500);
+            
+            rctx.fillStyle = '#1e8e3e';
+            rctx.fillRect(0, 0, 900, 70);
+            rctx.fillStyle = 'white';
+            rctx.font = 'bold 24px Arial, sans-serif';
+            rctx.textAlign = 'center';
+            rctx.fillText('LEMBAR LATIHAN MENULIS HURUF ARAB', 450, 30);
+            rctx.font = '26px Amiri, Noto Naskh Arabic, serif';
+            rctx.fillText('أعضاء الأسرة - Anggota Keluarga', 450, 58);
+            
+            rctx.fillStyle = '#333';
+            rctx.font = '16px Arial, sans-serif';
+            rctx.textAlign = 'left';
+            rctx.fillText(`Nama    : ${name}`, 40, 100);
+            rctx.fillText(`Kelas   : ${kelas}`, 40, 125);
+            rctx.fillText(`Tanggal : ${tanggal}`, 40, 150);
+            
+            rctx.fillStyle = '#0d652d';
+            rctx.font = 'bold 14px Arial, sans-serif';
+            rctx.textAlign = 'center';
+            rctx.fillText('Tebalkan dan tulis lagi kosakata bahasa Arab tentang anggota keluarga berikut!', 450, 185);
+            
+            const startY = 210;
+            const cardHeight = 150;
+            const cardWidth = 820;
+            const gap = 12;
+            
+            wordList.forEach((item, idx) => {
+                const y = startY + idx * (cardHeight + gap);
+                
+                rctx.fillStyle = idx % 2 === 0 ? '#f9f9f9' : '#ffffff';
+                rctx.fillRect(40, y, cardWidth, cardHeight);
+                rctx.strokeStyle = '#1e8e3e';
+                rctx.lineWidth = 1.5;
+                rctx.strokeRect(40, y, cardWidth, cardHeight);
+                
+                rctx.fillStyle = '#1e8e3e';
+                rctx.beginPath();
+                rctx.arc(65, y + 25, 15, 0, Math.PI * 2);
+                rctx.fill();
+                rctx.fillStyle = 'white';
+                rctx.font = 'bold 14px Arial';
+                rctx.textAlign = 'center';
+                rctx.fillText(`${idx + 1}`, 65, y + 30);
+                
+                rctx.fillStyle = '#1a1a1a';
+                rctx.font = 'bold 42px Amiri, Noto Naskh Arabic, serif';
+                rctx.textAlign = 'center';
+                rctx.fillText(item.word, 200, y + 40);
+                
+                rctx.fillStyle = '#555';
+                rctx.font = '14px Arial, sans-serif';
+                rctx.fillText(item.meaning, 200, y + 65);
+                
+                rctx.fillStyle = '#1e8e3e';
+                rctx.font = 'italic 12px Arial, sans-serif';
+                rctx.fillText(item.translit, 200, y + 82);
+                
+                rctx.strokeStyle = '#1e8e3e';
+                rctx.lineWidth = 1.5;
+                rctx.strokeRect(330, y + 10, 510, cardHeight - 20);
+                
+                const srcCanvas = canvases[idx];
+                rctx.drawImage(srcCanvas, 330, y + 10, 510, cardHeight - 20);
+            });
+            
+            rctx.fillStyle = '#999';
+            rctx.font = '12px Arial, sans-serif';
+            rctx.textAlign = 'center';
+            rctx.fillText('SD • KELAS III - Bahasa Arab - Aktivitas Proses التَّدْرِيبَات', 450, 1485);
+            
+            return resultCanvas;
+        }
+
+        function printResult() {
+            if (!validateAll()) return;
+            const resultCanvas = generateResultImage();
+            const dataUrl = resultCanvas.toDataURL('image/png');
+            const name = document.getElementById('studentName').value;
+            
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head><title>Hasil Menulis Arab - ${name}</title></head>
+                <body style="margin:0; display:flex; justify-content:center; min-height:100vh; background:white;">
+                    <img src="${dataUrl}" style="max-width:100%; height:auto;">
+                    <script>window.onload = function() { setTimeout(function() { window.print(); }, 500); };<\/script>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            showStatus('📄 Dokumen siap dicetak!', 'success');
+        }
+
+        function downloadResult() {
+            if (!validateAll()) return;
+            const resultCanvas = generateResultImage();
+            const link = document.createElement('a');
+            const name = document.getElementById('studentName').value;
+            const tanggal = document.getElementById('studentDate').value;
+            link.download = `Menulis_Arab_Lengkap_${name}_${tanggal}.png`;
+            link.href = resultCanvas.toDataURL('image/png');
+            link.click();
+            showStatus('💾 Gambar berhasil diunduh!', 'success');
+        }
+
+        function saveToDrive() {
+            if (!validateAll()) return;
+            
+            showStatus('⏳ Mengirim ke Google Drive...', 'info');
+            const resultCanvas = generateResultImage();
+            const dataUrl = resultCanvas.toDataURL('image/png');
+            const name = document.getElementById('studentName').value;
+            const kelas = document.getElementById('studentClass').value;
+            const tanggal = document.getElementById('studentDate').value;
+            const fileName = `Arab_Lengkap_${name}_${tanggal}.png`;
+            
+            fetch(GAS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    image: dataUrl,
+                    fileName: fileName,
+                    studentName: name,
+                    studentClass: kelas,
+                    date: tanggal,
+                    word: 'Semua_Kosakata_Anggota_Keluarga'
+                })
+            })
+            .then(() => {
+                showStatus('✅ Hasil berhasil dikirim ke Google Drive Guru!', 'success');
+            })
+            .catch(error => {
+                showStatus('❌ Gagal mengirim. Periksa koneksi internet Anda.', 'error');
+                console.error('Error:', error);
+            });
+        }
+
+        function validateAll() {
+            const name = document.getElementById('studentName').value;
+            if (!name) {
+                showStatus('⚠️ Silakan isi nama siswa terlebih dahulu!', 'error');
+                return false;
+            }
+            const incomplete = allStrokes.filter(s => s.length === 0).length;
+            if (incomplete > 0) {
+                showStatus(`⚠️ Masih ada ${incomplete} kata yang belum ditulis! Tulis semua kata dulu ya.`, 'error');
+                allStrokes.forEach((s, idx) => {
+                    if (s.length === 0) {
+                        const card = document.getElementById(`card-${idx}`);
+                        card.style.animation = 'shake 0.5s';
+                        setTimeout(() => card.style.animation = '', 500);
+                    }
+                });
+                return false;
+            }
+            return true;
+        }
+
+        function showStatus(message, type) {
+            const el = document.getElementById('statusMessage');
+            el.textContent = message;
+            el.className = `status-message status-${type}`;
+            el.style.display = 'block';
+            setTimeout(() => el.style.display = 'none', 5000);
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        init();
+    </script>
+</body>
+</html>
